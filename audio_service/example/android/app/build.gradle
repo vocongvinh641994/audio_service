@@ -32,10 +32,22 @@ apply plugin: 'com.android.application'
 android {
     namespace "com.ryanheise.audioserviceexample"
     compileSdkVersion 35
+    ndkVersion android.ndkVersion
 
-    lintOptions {
-        disable 'InvalidPackage'
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
 
     defaultConfig {
         applicationId "com.ryanheise.audioserviceexample"
@@ -53,6 +65,9 @@ android {
             signingConfig signingConfigs.debug
             shrinkResources true
         }
+    }
+    lint {
+        disable 'InvalidPackage'
     }
 }
 
